@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WeatherController@index');
+Route::get('/list-orders', 'OrderController@index');

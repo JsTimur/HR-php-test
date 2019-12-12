@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Services\Weather\YandexMapAPI;
 use Illuminate\Support\ServiceProvider;
+use GuzzleHttp\Client;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +25,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 }
