@@ -3,21 +3,23 @@
 namespace App\Services\Weather;
 
 class WeatherService {
-    protected $lat;
-    protected $lon;
 
-    public function __construct(WeatherAPIAbstract $service)
+    /**
+     * @var WeatherProvider
+     */
+    private $provider;
+
+    /**
+     * WeatherService constructor.
+     * @param WeatherProvider $provider
+     */
+    public function __construct(WeatherProvider $provider)
     {
-        $this->service = $service;
+        $this->provider = $provider;
     }
 
-    public function setLatLon($lat,$lon) {
-        $this->lat = $lat;
-        $this->lon = $lon;
-    }
-
-    public function getCityCurrentTemp() {
-        return $this->service->getCurrentByLatLon($this->lat,$this->lon);
+    public function getCityCurrentTemp(string $lat, string $lon):int {
+        return $this->provider->getCurrentTempByLatLon($lat,$lon);
     }
 
 }

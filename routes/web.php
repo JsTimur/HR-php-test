@@ -12,4 +12,5 @@
 */
 
 Route::get('/', 'WeatherController@index');
-Route::get('/list-orders', 'OrderController@index');
+Route::get('/order/list', 'OrderController@index');
+Route::get('/order/update/{id}', 'OrderController@update')->where('id', '[0-9]+')->name('order.update');

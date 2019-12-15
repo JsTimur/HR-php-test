@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-use App\Services\Weather\YandexMapAPI;
+use App\Services\Weather\WeatherProvider;
+use App\Services\Weather\YandexWeatherProvider;
 use Illuminate\Support\ServiceProvider;
 use GuzzleHttp\Client;
 
@@ -25,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton(WeatherProvider::class, YandexWeatherProvider::class);
     }
 }

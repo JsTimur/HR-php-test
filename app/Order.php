@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    public function orderFullPrice() {
+        return $this->orderproducts->sum(function ($prod) {
+            return $prod->quantity * $prod->price;
+        });
+    }
     public function partner(){
         return $this->belongsTo(Partner::class);
     }

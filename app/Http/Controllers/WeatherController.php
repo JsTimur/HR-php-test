@@ -9,13 +9,11 @@ use Illuminate\Http\Request;
 
 class WeatherController extends Controller
 {
-    public function index()
+    public function index(WeatherService $service)
     {
-        $getWeather = new WeatherService(new YandexMapAPI(['headers' => ['X-Yandex-API-Key' => env('YANDEX_WEATHER_API_KEY')]]));
         // Температура в Брянске
-        $getWeather->setLatLon('53.243562', '34.363407');
         $city['name'] = 'Брянск';
-        $city['value'] = $getWeather->getCityCurrentTemp();
+        $city['value'] = $service->getCityCurrentTemp('53.243562', '34.363407');
 
         return view('pages.index', ['city'=>$city]);
     }

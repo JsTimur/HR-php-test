@@ -16,16 +16,18 @@
             <tbody>
             @foreach ($orders as $order)
                 <tr>
-                    <th scope="row">{{$order->id}}</th>
+                    <th scope="row">
+                        <a href="{{route('order.update', ['id'=>$order->id])}}">
+                        {{$order->id}}
+                        </a>
+                    </th>
                     <td>{{$order->partner->name}}</td>
-                    <td>{{$order->orderproducts->sum(function ($prod) {
-                        return $prod->quantity * $prod->price;
-                    })}} р.</td>
+                    <td>{{$order->orderFullPrice()}} р.</td>
                     <td>
                         @foreach ($order->orderproducts as $product)
                             <p>{{$product->product->name}},
-                            {{$product->quantity}} шт.,
-                             {{$product->price}} р.</p>
+                                {{$product->quantity}} шт.,
+                                {{$product->price}} р.</p>
                         @endforeach
                     </td>
                     <td>{{ __("statuses.$order->status")}}</td>
