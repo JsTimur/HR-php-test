@@ -17,4 +17,9 @@ class Order extends Model
     public function orderproducts() {
         return $this->hasMany(OrderProduct::class);
     }
+    public function withEager() {
+        return $this::with('partner', 'orderproducts');
+    }
+
+    protected $guarded = [];
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Services\Weather\WeatherService;
-use App\Services\Weather\YandexMapAPI;
 use Illuminate\Http\Request;
 
 
@@ -13,8 +12,9 @@ class WeatherController extends Controller
     {
         // Температура в Брянске
         $city['name'] = 'Брянск';
-        $city['value'] = $service->getCityCurrentTemp('53.243562', '34.363407');
+        $temperature = $service->getCityCurrentTemp('53.243562', '34.363407');
+        $city['value'] = $temperature <= 0 ? $temperature : '+'.$temperature.'°';
 
-        return view('pages.index', ['city'=>$city]);
+        return view('pages.weather', ['city'=>$city]);
     }
 }
